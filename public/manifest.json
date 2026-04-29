@@ -1,0 +1,16 @@
+{
+  "name": "Mazurovej | Minecraft Plugin & Skript Developer",
+  "short_name": "Mazurovej",
+  "description": "Portfolio of Mazurovej - Minecraft Plugin & Skript Developer with 6+ Years of Experience.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#55FF55",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ]
+}

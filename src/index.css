@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+@theme {
+  --color-minecraft-green: #5eead4; /* Soft teal-mint accent */
+  --color-minecraft-dark-green: #14b8a6;
+  --color-minecraft-dirt: #866043;
+  --color-minecraft-stone: #9E9E9E;
+  --color-minecraft-obsidian: #1A1A1A;
+  --color-background: #09090b; /* Very dark, almost black */
+  --color-surface: #121214; /* Slightly lighter surface for cards */
+  --color-surface-hover: #18181b;
+  --color-border: #27272a; /* Subtle borders */
+  
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-mono: 'Fira Code', 'JetBrains Mono', monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+  
+  html, body {
+    @apply bg-background text-zinc-300 antialiased font-sans;
+    min-height: 100vh;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-white font-semibold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-minecraft-green/30 text-white;
+  }
+
+  /* Emil Kowalski Principle: Buttons must feel responsive */
+  a, button {
+    transition: transform 160ms var(--ease-out), background-color 160ms var(--ease-out), border-color 160ms var(--ease-out), color 160ms var(--ease-out);
+  }
+  
+  a:active, button:active {
+    transform: scale(0.97);
+  }
+}
+
+.pixel-corners {
+  clip-path: polygon(
+    4px 0, calc(100% - 4px) 0, 
+    100% 4px, 100% calc(100% - 4px), 
+    calc(100% - 4px) 100%, 4px 100%, 
+    0 calc(100% - 4px), 0 4px
+  );
+}
+
+.minecraft-grid {
+  background: radial-gradient(circle at 50% -20%, rgba(94, 234, 212, 0.05) 0%, transparent 70%);
+}
