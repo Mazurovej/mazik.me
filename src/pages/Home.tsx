@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, GitBranch, Hash, ShoppingBag, MessageSquare } from 'lucide-react';
+import { ArrowRight, GitBranch, MessageSquare } from 'lucide-react';
 import { SEO } from '../components/seo/SEO';
 import { projects } from '../data/projects';
 import { ProjectPreviewTile } from '../components/projects/ProjectPreviewTile';
@@ -117,7 +117,7 @@ export function Home() {
             initial={emilInitial}
             animate={emilEnter}
             transition={{ ...emilTransition, delay: 0.15 }}
-            className="grid grid-cols-4 gap-4 pt-2"
+            className="grid grid-cols-2 gap-4 pt-2"
           >
             {[
               { icon: MessageSquare, label: 'Discord', href: 'https://discordapp.com/users/671357390758871060' },

@@ -5,6 +5,7 @@ import { Projects } from './pages/Projects';
 import { ProjectDetail } from './pages/ProjectDetail';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { MarkdownConverter } from './pages/MarkdownConverter';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -25,6 +26,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:id" element={<ProjectDetail />} />
+          <Route path="noterizer" element={<MarkdownConverter />} />
         </Route>
       </Routes>
     </>
