@@ -38,7 +38,7 @@ export function ProjectDetail() {
       />
 
       <article className="min-h-screen flex flex-col items-center py-24 px-4 sm:px-6">
-        <div className="w-full max-w-2xl space-y-4">
+        <div className="w-full max-w-5xl space-y-4">
 
           <motion.div
             initial={emilInitial}
