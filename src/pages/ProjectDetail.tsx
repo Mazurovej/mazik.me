@@ -1,12 +1,13 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { GitBranch, ExternalLink, CheckCircle2 } from 'lucide-react';
+import { GitBranch, Download, CheckCircle2 } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { SEO } from '../components/seo/SEO';
 import { projects } from '../data/projects';
+import { ProjectGallery } from '../components/projects/ProjectGallery';
 
 const emilTransition = { duration: 0.4, ease: [0.23, 1, 0.32, 1] as [number, number, number, number] };
 const emilEnter = { opacity: 1, transform: "translateY(0px) scale(1)" };
@@ -46,46 +47,56 @@ export function ProjectDetail() {
             transition={emilTransition}
             className="bg-surface border border-border rounded-[2rem] p-8"
           >
-            <div className="flex flex-wrap gap-2 mb-6">
-              {project.tags.map(tag => (
-                <span key={tag} className="px-3 py-1 rounded-full border border-minecraft-green/20 text-minecraft-green text-[10px] font-bold uppercase tracking-wider bg-minecraft-green/5">
-                  {tag}
-                </span>
-              ))}
-              {project.version && (
-                <span className="px-3 py-1 rounded-full border border-border text-zinc-400 text-[10px] font-mono font-bold uppercase tracking-wider bg-surface-hover">
-                  {project.version}
-                </span>
-              )}
-            </div>
+            <div className={`${project.images && project.images.length > 0 ? 'grid grid-cols-1 lg:grid-cols-2 gap-8' : ''}`}>
+              {/* Left column: project metadata */}
+              <div className="flex flex-col">
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map(tag => (
+                    <span key={tag} className="px-3 py-1 rounded-full border border-minecraft-green/20 text-minecraft-green text-[10px] font-bold uppercase tracking-wider bg-minecraft-green/5">
+                      {tag}
+                    </span>
+                  ))}
+                  {project.version && (
+                    <span className="px-3 py-1 rounded-full border border-border text-zinc-400 text-[10px] font-mono font-bold uppercase tracking-wider bg-surface-hover">
+                      {project.version}
+                    </span>
+                  )}
+                </div>
 
-            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-              {project.name}
-            </h1>
-            <p className="text-sm text-zinc-400 leading-relaxed mb-8">
-              {project.description}
-            </p>
+                <h1 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+                  {project.name}
+                </h1>
+                <p className="text-sm text-zinc-400 leading-relaxed mb-8">
+                  {project.description}
+                </p>
 
-            <div className="flex flex-col sm:flex-row gap-3">
-              {project.demoUrl && (
-                <a
-                  href={project.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-minecraft-green/10 border border-minecraft-green/20 text-minecraft-green hover:bg-minecraft-green hover:text-black transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
-                >
-                  <ExternalLink className="w-4 h-4" /> Live Demo
-                </a>
-              )}
-              {project.githubUrl && (
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 px-6 py-3 bg-surface-hover border border-border text-white hover:border-zinc-700 transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
-                >
-                  <GitBranch className="w-4 h-4" /> View Source
-                </a>
+                <div className="flex flex-col sm:flex-row gap-3 mt-auto">
+                  {project.demoUrl && (
+                    <a
+                      href={project.demoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-minecraft-green/10 border border-minecraft-green/20 text-minecraft-green hover:bg-minecraft-green hover:text-black transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
+                    >
+                      <Download className="w-4 h-4" /> Download
+                    </a>
+                  )}
+                  {project.githubUrl && (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-surface-hover border border-border text-white hover:border-zinc-700 transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
+                    >
+                      <GitBranch className="w-4 h-4" /> View Source
+                    </a>
+                  )}
+                </div>
+              </div>
+
+              {/* Right column: image gallery */}
+              {project.images && project.images.length > 0 && (
+                <ProjectGallery images={project.images} projectName={project.name} />
               )}
             </div>
           </motion.div>

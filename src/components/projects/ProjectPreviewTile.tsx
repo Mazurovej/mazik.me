@@ -10,15 +10,19 @@ interface Props {
 export function ProjectPreviewTile({ project }: Props) {
   return (
     <Link to={`/projects/${project.id}`}>
-      <motion.div 
+      <motion.div
         whileHover={{ scale: 0.99 }}
         whileTap={{ scale: 0.97 }}
         className="group relative flex items-center justify-between p-4 rounded-2xl bg-background border border-border hover:bg-surface-hover hover:border-zinc-700 transition-colors"
       >
         <div className="flex items-center gap-4">
           <div className="w-12 h-12 rounded-xl bg-surface border border-border flex items-center justify-center shrink-0 overflow-hidden relative">
-            <span className="text-xl font-bold text-minecraft-green font-mono z-10">{project.name.charAt(0)}</span>
-            <div className="absolute inset-0 bg-minecraft-green/5 group-hover:bg-minecraft-green/10 transition-colors" />
+            <img
+              src={project.icon}
+              alt={project.name}
+              className="absolute inset-0 w-full h-full object-cover z-10"
+            />
+
           </div>
           <div>
             <div className="flex items-center gap-3 mb-1">

@@ -58,3 +58,35 @@
 .minecraft-grid {
   background: radial-gradient(circle at 50% -20%, rgba(94, 234, 212, 0.05) 0%, transparent 70%);
 }
+
+/* Swiper gallery overrides */
+
+/* Keep pagination dots inline with nav buttons, not stretched full-width */
+.project-gallery .gallery-pagination {
+  position: static !important;
+  width: auto !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-gallery .swiper-pagination-bullet {
+  width: 6px;
+  height: 6px;
+  background: #52525b;
+  opacity: 1;
+  border-radius: 9999px;
+  transition: background-color 200ms ease, width 200ms ease;
+}
+
+.project-gallery .swiper-pagination-bullet-active {
+  background: #5eead4;
+  width: 18px;
+}
+
+/* Hide default Swiper nav arrows (we use custom buttons) */
+.project-gallery .swiper-button-next,
+.project-gallery .swiper-button-prev {
+  display: none;
+}
+
