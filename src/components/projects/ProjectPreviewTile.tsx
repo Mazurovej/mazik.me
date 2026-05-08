@@ -8,8 +8,13 @@ interface Props {
 }
 
 export function ProjectPreviewTile({ project }: Props) {
+  const accentColor = project.accentColor || '#5eead4';
+  const accentStyle = {
+    '--project-accent': accentColor,
+  } as React.CSSProperties;
+
   return (
-    <Link to={`/projects/${project.id}`}>
+    <Link to={`/projects/${project.id}`} style={accentStyle}>
       <motion.div
         whileHover={{ scale: 0.99 }}
         whileTap={{ scale: 0.97 }}
@@ -26,11 +31,11 @@ export function ProjectPreviewTile({ project }: Props) {
           </div>
           <div>
             <div className="flex items-center gap-3 mb-1">
-              <h3 className="text-lg font-bold text-white group-hover:text-minecraft-green transition-colors">
+              <h3 className="text-lg font-bold text-white group-hover:text-[var(--project-accent)] transition-colors">
                 {project.name}
               </h3>
               {project.isPopular && (
-                <span className="bg-minecraft-green/10 text-minecraft-green text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-minecraft-green/20">
+                <span className="bg-[color-mix(in_srgb,var(--project-accent)_10%,transparent)] text-[var(--project-accent)] text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider border border-[color-mix(in_srgb,var(--project-accent)_20%,transparent)]">
                   New
                 </span>
               )}
@@ -50,7 +55,7 @@ export function ProjectPreviewTile({ project }: Props) {
           <div className="hidden sm:flex items-center gap-4 text-right">
             <div className="flex flex-col items-end">
               {project.price && (
-                <div className="flex items-center gap-1 text-minecraft-green text-xs font-bold mb-1">
+                <div className="flex items-center gap-1 text-[var(--project-accent)] text-xs font-bold mb-1">
                   {project.price}
                 </div>
               )}

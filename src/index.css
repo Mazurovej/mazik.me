@@ -80,7 +80,7 @@
 }
 
 .project-gallery .swiper-pagination-bullet-active {
-  background: #5eead4;
+  background: var(--project-accent, #5eead4);
   width: 18px;
 }
 

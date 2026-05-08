@@ -21,6 +21,11 @@ export function ProjectDetail() {
     return <Navigate to="/projects" replace />;
   }
 
+  const accentColor = project.accentColor || '#5eead4';
+  const accentStyle = {
+    '--project-accent': accentColor,
+  } as React.CSSProperties;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -38,7 +43,7 @@ export function ProjectDetail() {
         schema={JSON.stringify(schema)}
       />
 
-      <article className="min-h-screen flex flex-col items-center py-24 px-4 sm:px-6">
+      <article className="min-h-screen flex flex-col items-center py-24 px-4 sm:px-6" style={accentStyle}>
         <div className="w-full max-w-5xl space-y-4">
 
           <motion.div
@@ -52,7 +57,7 @@ export function ProjectDetail() {
               <div className="flex flex-col">
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 rounded-full border border-minecraft-green/20 text-minecraft-green text-[10px] font-bold uppercase tracking-wider bg-minecraft-green/5">
+                    <span key={tag} className="px-3 py-1 rounded-full border border-[color-mix(in_srgb,var(--project-accent)_20%,transparent)] text-[var(--project-accent)] text-[10px] font-bold uppercase tracking-wider bg-[color-mix(in_srgb,var(--project-accent)_5%,transparent)]">
                       {tag}
                     </span>
                   ))}
@@ -76,7 +81,7 @@ export function ProjectDetail() {
                       href={project.demoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-2 px-6 py-3 bg-minecraft-green/10 border border-minecraft-green/20 text-minecraft-green hover:bg-minecraft-green hover:text-black transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
+                      className="flex items-center justify-center gap-2 px-6 py-3 bg-[color-mix(in_srgb,var(--project-accent)_10%,transparent)] border border-[color-mix(in_srgb,var(--project-accent)_20%,transparent)] text-[var(--project-accent)] hover:bg-[var(--project-accent)] hover:text-black transition-colors rounded-xl font-bold text-xs uppercase tracking-widest flex-1"
                     >
                       <Download className="w-4 h-4" /> Download
                     </a>
@@ -118,7 +123,7 @@ export function ProjectDetail() {
               <ul className="space-y-3">
                 {project.techStack.map(tech => (
                   <li key={tech} className="flex items-center gap-2 text-sm text-zinc-300">
-                    <span className="w-1.5 h-1.5 bg-minecraft-green rounded-full shadow-sm"></span>
+                    <span className="w-1.5 h-1.5 bg-[var(--project-accent)] rounded-full shadow-sm"></span>
                     {tech}
                   </li>
                 ))}
@@ -136,7 +141,7 @@ export function ProjectDetail() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               {project.features.map(feature => (
                 <div key={feature} className="bg-background border border-border p-4 rounded-xl flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-minecraft-green shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-[var(--project-accent)] shrink-0 mt-0.5" />
                   <span className="text-sm text-zinc-300">{feature}</span>
                 </div>
               ))}
@@ -151,9 +156,9 @@ export function ProjectDetail() {
               transition={{ ...emilTransition, delay: 0.3 + (idx * 0.1) }}
               className="bg-[#0f0f11] border border-border/50 rounded-[2rem] p-6 md:p-8 relative overflow-hidden group"
             >
-              <div className="absolute top-0 left-0 w-1 h-full bg-minecraft-green/20 group-hover:bg-minecraft-green transition-colors" />
+              <div className="absolute top-0 left-0 w-1 h-full bg-[color-mix(in_srgb,var(--project-accent)_20%,transparent)] group-hover:bg-[var(--project-accent)] transition-colors" />
               <div className="flex items-center gap-2 mb-6">
-                <h2 className="text-xs font-mono font-bold text-minecraft-green tracking-wide flex items-center gap-2 uppercase">
+                <h2 className="text-xs font-mono font-bold text-[var(--project-accent)] tracking-wide flex items-center gap-2 uppercase">
                   <span className="text-zinc-600">~</span> {note.title}
                 </h2>
               </div>
@@ -180,7 +185,7 @@ export function ProjectDetail() {
                           {String(children).replace(/\n$/, '')}
                         </SyntaxHighlighter>
                       ) : (
-                        <code {...props} className="bg-surface px-1.5 py-0.5 rounded-md text-minecraft-green font-mono text-xs border border-border/50">
+                        <code {...props} className="bg-surface px-1.5 py-0.5 rounded-md text-[var(--project-accent)] font-mono text-xs border border-border/50">
                           {children}
                         </code>
                       )

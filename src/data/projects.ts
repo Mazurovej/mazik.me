@@ -19,6 +19,7 @@ export interface Project {
   stars?: number;
   images?: string[];
   icon?: string;
+  accentColor?: string;
 }
 
 export const projects: Project[] = [
@@ -61,11 +62,12 @@ export const projects: Project[] = [
     price: "FREE",
     stars: 1.0,
     images: [
-      "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=1600&q=80",
+      "/mazuAPI.jpg",
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80"
     ],
-    icon: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=80&q=80"
+    icon: "/icon_mazuAPI.jpg",
+    accentColor: "#5eead4"
   },
   {
     id: "lobby-sys",
@@ -110,7 +112,8 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80"
     ],
-    icon: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=80&q=80"
+    icon: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=80&q=80",
+    accentColor: "#f43f5e"
   },
   {
     id: "smart-kick-redirect",
@@ -155,6 +158,7 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1600&q=80",
       "https://images.unsplash.com/photo-1542831371-29b0f74f9713?auto=format&fit=crop&w=1600&q=80"
     ],
-    icon: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=80&q=80"
+    icon: "https://images.unsplash.com/photo-1627398242454-45a1465c2479?auto=format&fit=crop&w=80&q=80",
+    accentColor: "#fbbf24"
   },
 ];

@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X, ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
+import { projects } from '../../data/projects';
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,8 +12,16 @@ export function Navbar() {
     { name: 'Projects', path: '/projects' },
   ];
 
+  const projectMatch = location.pathname.match(/^\/projects\/([^/]+)/);
+  const currentProject = projectMatch ? projects.find(p => p.id === projectMatch[1]) : null;
+  const accentColor = currentProject?.accentColor || '#5eead4';
+
+  const accentStyle = {
+    '--project-accent': accentColor,
+  } as React.CSSProperties;
+
   return (
-    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
+    <div className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none" style={accentStyle}>
       <nav className="bg-surface/80 backdrop-blur-xl border border-border rounded-full px-4 py-2 flex items-center justify-between w-full max-w-2xl pointer-events-auto shadow-2xl">
         <Link to="/" className="flex items-center gap-2 text-zinc-400 hover:text-white transition-colors group px-2">
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -28,7 +37,7 @@ export function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`text-xs font-bold uppercase tracking-widest transition-colors px-4 py-2 rounded-full ${
-                  isActive ? 'bg-minecraft-green/10 text-minecraft-green' : 'text-zinc-500 hover:text-zinc-300'
+                  isActive ? 'bg-[color-mix(in_srgb,var(--project-accent)_10%,transparent)] text-[var(--project-accent)]' : 'text-zinc-500 hover:text-zinc-300'
                 }`}
               >
                 {link.name}
@@ -65,7 +74,7 @@ export function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className={`block px-4 py-3 text-xs font-bold uppercase tracking-widest rounded-xl ${
                   location.pathname.startsWith(link.path) 
-                    ? 'text-minecraft-green bg-minecraft-green/10' 
+                    ? 'text-[var(--project-accent)] bg-[color-mix(in_srgb,var(--project-accent)_10%,transparent)]' 
                     : 'text-zinc-400 hover:text-white hover:bg-surface-hover'
                 }`}
               >
